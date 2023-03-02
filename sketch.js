@@ -18,4 +18,12 @@ function loadCamera(){
 
 function draw() {
   // put drawing code here
+  for (var x = 0; x < width; x += width / 3) {
+		for (var y = 0; y < height; y += height / 2) {
+			stroke(51);
+			strokeWeight(5);
+			line(x, 0, x, height);
+			line(0, y, width, y);
+		}
+	}
 }
