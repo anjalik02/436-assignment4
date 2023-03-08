@@ -1,4 +1,4 @@
-let button, img, sel;
+let button, img, sel, r, g, b, circle;
 
 function preload() {
   img = loadImage('assets/Robot.png');
@@ -23,6 +23,15 @@ function setup() {
   sel.option('Siri');
   sel.option('Cortana');
   sel.changed(mySelectEvent);
+
+  //box 3
+  textSize(20)
+  text("Press and hold circle to change its color", 930, 49)
+  r = random(255);
+  g = random(255);
+  b = random(255);
+  noStroke();
+  fill(0);
 }
 
 function mySelectEvent() {
@@ -44,7 +53,6 @@ function loadCamera(){
   image(img, 70, 20);
 }
 
-
 function draw() {
   // put drawing code here
   for (var x = 0; x < width; x += width / 3) {
@@ -55,4 +63,11 @@ function draw() {
 			line(0, y, width, y);
 		}
 	}
+
+  if (mouseIsPressed == true) {
+    fill(r,g,b)
+  } else {
+    fill(255,255,255)
+  }
+  ellipse(1100, 200, 250, 250);
 }
