@@ -19,7 +19,7 @@ function setup() {
   resetButton = createButton('Reset');
   resetButton.position(width + 20, 20);
   resetButton.mousePressed(resetGame);
-  resizeButton = createButton('Resize');
+  resizeButton = createButton('Resize');    ////// Could do a dropdown for this ????
   resizeButton.position(width + 20, 50);
   resizeButton.mousePressed(toggleSize);
   slider = createSlider(0, 255, 255);
