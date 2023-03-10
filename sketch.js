@@ -41,8 +41,9 @@ function setupBoard() {
 }
 
 // Draw the tic-tac-toe board
-function drawBoard() {
-  background(10, a, 10);
+function draw() {
+  a = color(slider.value() - 50, slider.value() + 20, slider.value() - 80);
+  background(a);
   stroke(0);
   strokeWeight(2);
   for (let i = 1; i < boardSize; i++) {
@@ -72,7 +73,7 @@ function mouseClicked() {
   if (board[i][j] === '') {
     board[i][j] = player1Turn ? 'X' : 'O';
     player1Turn = !player1Turn;
-    drawBoard();
+    draw();
     checkWinner();
   }
 }
@@ -138,7 +139,7 @@ alert(message);
 function resetGame() {
   player1Turn = true;
   setupBoard();
-  drawBoard();
+  draw();
 }
   
 // Toggle the board size
@@ -146,13 +147,13 @@ function toggleSize() {
   boardSize = boardSize === 3 ? 5 : 3;
   cellSize = width / boardSize;
   setupBoard();
-  drawBoard();
+  draw();
 }
   
   // // Update the board color
   // function updateColor() {
-  //   a = slider.value();
-  //   drawBoard();
+  //   a = background(slider.value())
+  //   draw();
   // }
   
   
