@@ -9,6 +9,7 @@ let resetButton;
 let resizeButton;
 let a = 255;
 let cellSize;
+let radioButtons;
 
 // Set up the canvas
 function setup() {
@@ -19,12 +20,19 @@ function setup() {
   resetButton = createButton('Reset');
   resetButton.position(width + 20, 20);
   resetButton.mousePressed(resetGame);
-  resizeButton = createButton('Resize');    ////// Could do a dropdown for this ????
-  resizeButton.position(width + 20, 50);
-  resizeButton.mousePressed(toggleSize);
+  // resizeButton = createButton('Resize');    ////// Could do a dropdown for this ????
+  // resizeButton.position(width + 20, 50);
+  // resizeButton.mousePressed(toggleSize);
   slider = createSlider(0, 255, 255);
   slider.position(width + 20, 80);
   slider.style('width', '80px');
+  radioButtons = createRadio();
+  radioButtons.option('3x3', 3);
+  radioButtons.option('5x5', 5);
+  radioButtons.selected(boardSize);
+  radioButtons.position(width + 20, 55);
+  radioButtons.style('width', '80px');
+  radioButtons.changed(toggleSize);
   setupBoard();
 }
 
@@ -149,11 +157,5 @@ function toggleSize() {
   setupBoard();
   draw();
 }
-  
-  // // Update the board color
-  // function updateColor() {
-  //   a = background(slider.value())
-  //   draw();
-  // }
   
   
