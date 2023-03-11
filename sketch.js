@@ -10,10 +10,12 @@ let resizeButton;
 let a = 255;
 let cellSize;
 let radioButtons;
+let songDropDown;
+let song1, song2, song3;
 
 // Set up the canvas
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth / 2, windowHeight - 100);
   cellSize = width / boardSize;
   player1Icon = loadImage('rev.webp');
   player2Icon = loadImage('bevo.png');
@@ -23,17 +25,55 @@ function setup() {
   // resizeButton = createButton('Resize');    ////// Could do a dropdown for this ????
   // resizeButton.position(width + 20, 50);
   // resizeButton.mousePressed(toggleSize);
+  let sliderLabel = createP("Change the background color");
+  sliderLabel.position(width + 20, 80);
+  sliderLabel.style('font-size', '16px');
   slider = createSlider(0, 255, 255);
-  slider.position(width + 20, 80);
+  slider.position(width + 20, 115);
   slider.style('width', '80px');
   radioButtons = createRadio();
-  radioButtons.option('3x3', 3);
-  radioButtons.option('5x5', 5);
+  radioButtons.option(3, '3x3');
+  radioButtons.option(5, '5x5');
   radioButtons.selected(boardSize);
   radioButtons.position(width + 20, 55);
-  radioButtons.style('width', '80px');
+  radioButtons.style('width', '120px');
   radioButtons.changed(toggleSize);
+  songDropDown = createSelect();
+  songDropDown.position(width + 20, 150);
+  songDropDown.option('Select a Background Song');
+  songDropDown.option('Aggie War Hymn');
+  songDropDown.option('National Anthem');
+  songDropDown.option('Harry Potter Theme');
+  songDropDown.changed(mySelectEvent);
+  song1 = loadSound('../assets/Aggie-War-Hymn.mp3');
+  song2 = loadSound('../assets/National-Anthem.mp3');
+  song3 = loadSound('../assets/Harry-Potter.mp3');
   setupBoard();
+}
+
+//handle song dropdown
+function mySelectEvent() {
+  let item = songDropDown.value();
+  if(item === 'Aggie War Hymn'){
+    song2.stop();
+    song3.stop();
+    song1.play();
+  }
+  else if(item === 'National Anthem'){
+    song1.stop();
+    song3.stop();
+    song2.play();
+  }
+  else if(item === 'Harry Potter Theme'){
+    song2.stop();
+    song1.stop();
+    song3.play();
+  }
+  else if(item === 'Select a Background Song'){
+    song2.stop();
+    song1.stop();
+    song3.stop();
+  }
 }
 
 // Set up the tic-tac-toe board
